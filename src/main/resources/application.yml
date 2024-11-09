@@ -1,0 +1,43 @@
+fulldev:
+  api-package: com.blog.blog.api
+spring:
+  profiles:
+    active: dev
+  jpa:
+    hibernate:
+      ddl-auto: none
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+  rabbitmq:
+    addresses: 123.206.232.185:5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 15000
+    listener:
+      simple:
+        concurrency: 15
+        max-concurrency: 20
+        prefetch: 1
+        acknowledge-mode: manual
+    publisher-returns: true
+    publisher-confirm-type: correlated
+    template:
+      mandatory: true
+    publisher-confirms: true
+  redis:
+    host: 123.206.232.185
+    port: 6379
+    password: redis123456
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 500
+        min-idle: 0
+    lettuce:
+      shutdown-timeout: 0
+  thymeleaf:
+    prefix: classpath:/templates/
